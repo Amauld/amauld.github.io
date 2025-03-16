@@ -31,7 +31,7 @@
             #fieldset-7 {
                 border-color: red;
             }
-            #span-1 {
+            .span-1 {
                 display: inline-block;
                 width: 120px;
             }
@@ -49,22 +49,22 @@
             <p>
                 Cette page a pour but de tester ses connaissances en bases de la programmation web.
             </p>
-            <form form action="sentData.php" method="post" oninput="result.value=level.value">
+            <form action="sentData.php" method="post" oninput="result.value=level.value">
                 <fieldset id="fieldset-1">
                     <legend>Informations de l'étudiant</legend>
-                    <span id="span-1">
+                    <span class="span-1">
                         <label>Nom : </label>
                     </span>
                     <input type="text" placeholder="Votre nom" required><br>
-                    <span id="span-1">
+                    <span class="span-1">
                         <label>Prénom : </label>
                     </span>
                     <input type="text" placeholder="Vote prénom" required><br>
-                    <span  id="span-1">
+                    <span class="span-1">
                         <label>Mail : </label>
                     </span>
                     <input type="email" placeholder="Votre adresse mail" required><br>
-                    <span  id="span-1">
+                    <span class="span-1">
                         <label>Date du quiz : </label>
                     </span>
                     <input type="date"><br>
@@ -104,7 +104,7 @@
                 <fieldset id="fieldset-5">
                     <legend>Question 4</legend>
                     <p>Une question impliquant une liste à choix multiples ?</p>
-                    <select name = "listSelectMultiple" select multiple size="12">
+                    <select name = "listSelectMultiple" multiple size="12">
                         <optgroup label="Group1">
                             <option value="1.1">Option 1.1</option>
                             <option value="1.2">Option 1.2</option>
