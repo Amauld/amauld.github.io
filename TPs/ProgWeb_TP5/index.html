@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head>
+
+    <script>
+        // EXERCICE 1
+        console.log("Exercice 1:")
+        console.log("On a A^3+B^3+C^3 == A^100+B^10+C quand:")
+        for (let a = 1; a < 10; a++) {
+            for (let b = 1; b < 10; b++){
+                for(let c = 1; c < 10; c++){
+                    let abc1 = a*100+b*10+c
+                    let abc2 = Math.pow(a,3)+Math.pow(b,3)+Math.pow(c,3)
+                    if (abc1===abc2) {
+                        console.log("A="+a+" B="+b+" C="+c)
+                    }
+                }
+            }
+        }
+
+        // EXERCICE 2
+        console.log("Exercice 2:")
+        let montant = 369
+        console.log("Pour un montant de 369€, on a")
+        let billets = [200,100,50,20,10,5,2,1]
+        let rendu = []
+        billets.forEach(function(item,index,array){
+            rendu[item] = Math.floor(montant/item)
+            montant = montant%item
+        })
+        console.log(rendu)
+
+        // EXERCICE 3
+        console.log("Exercice 3:")
+        let id = 17893729974
+        console.log("Nous vérifions si l'identifiant "+id+" est valide")
+        let idArray = (id.toString()).split("")
+        let checkDigit = idArray.pop()
+        idArray = idArray.reverse()
+        let somme = 0
+        for(let i = 0; i<idArray.length; i++){
+            if (!(i%2)){
+                let double = parseInt(idArray[i]*2)
+                if (double>9){
+                    double -= 9
+                }
+                somme += double
+            } else {
+                somme += parseInt(idArray[i])
+            }
+        }
+        let computedCheckDigit = (10 - (somme%10))%10
+        console.log(checkDigit == computedCheckDigit)
+    </script>
+</head>
+<body>
+    <h1>
+        Les exercices sont tous contenus dans cette page.
+    </h1>
+</body>
