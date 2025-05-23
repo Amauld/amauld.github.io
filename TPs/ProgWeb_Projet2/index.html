@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Partie 2</title>
+        <style>
+            input  {
+                display: table-cell;
+                margin-bottom: 10px;
+            }
+            #fieldset-1 {
+                display: table ;
+                border-color: blue;
+            }
+            #fieldset-2 {
+                border-color: brown;
+            }
+            .span-1 {
+                display: inline-block;
+                width: 120px;
+            }
+            input[required]:invalid {
+                border:2px red solid;
+            }
+            input[required]:valid {
+                border:2px green solid;
+            }
+        </style>
+        <script src="moment.js"> </script>
+        <script>
+            let listeTaches=[{"idTache":"1","nom":"Nom de la tache","desc":"Description de la tache","lieu":"Lieu de la tache","dateCreation":"2025-03-30","dateTache":"2025-04-02","idCouleur":"rouge","idCategorie":"2","idPriorite":"3","idStatut":"1"},{"idTache":"2","nom":"Finir le TP","desc":"Envoyer toutes les étapes de la première partie du projet de ProgWeb","lieu":"N'importe","dateCreation":"2025-04-07","dateTache":"2025-04-13","idCouleur":"vert","idCategorie":"2","idPriorite":"2","idStatut":"2"},{"idTache":"3","nom":"Test","desc":"","lieu":"","dateCreation":"2025-03-02","dateTache":"2025-03-02","idCouleur":"cyan","idCategorie":"3","idPriorite":"5","idStatut":"3"}]
+            console.log(listeTaches )
+            let priorites=[{"idPriorite":"1","priorite":"Très important"},{"idPriorite":"2","priorite":"Important"},{"idPriorite":"3","priorite":"Assez important"},{"idPriorite":"4","priorite":"Peu important"},{"idPriorite":"5","priorite":"Non important"}]
+            console.log(priorites)
+            let couleurs=[{"idCouleur":"rouge","code":"#FF0000"},{"idCouleur":"vert","code":"#00FF00"},{"idCouleur":"bleu","code":"#0000FF"},{"idCouleur":"cyan","code":"#00FFFF"}]
+            console.log(couleurs)
+            let categories=[{"idCategorie":"1","categorie":"Personnel"},{"idCategorie":"2","categorie":"Professionel"},{"idCategorie":"3","categorie":"Autre"}]
+            console.log(categories)
+            let statuts=[{"idStatut":"1","statut":"En attente"},{"idStatut":"2","statut":"Accompli"},{"idStatut":"3","statut":"Annulé"}]
+            console.log(statuts)
+
+            function save(){
+                var newNom = document.getElementById("idNom").value
+                var newDesc = document.getElementById("idDesc").value
+                var newLieu = document.getElementById("idLieu").value
+                var newDate = document.getElementById("idDate").value
+                var newDateCrea = moment().format("YYYY-MM-DD")
+                var newPrioriteId = document.getElementById("idPriorite").value
+                var newCategorieId = document.getElementById("idCategorie").value
+                var newStatutId = document.getElementById("idStatut").value
+                var newCouleurId = document.getElementById("idCouleur").value
+
+                let tache={"idTache":"1","nom":newNom,"desc":newDesc,"lieu":newLieu,"dateCreation":newDateCrea,"dateTache":newDate,"idCouleur":newCouleurId,"idCategorie":newCategorieId,"idPriorite":newPrioriteId,"idStatut":newStatutId}
+                console.log(tache)
+                listeTaches.push(tache)
+                listeTachesString = JSON.stringify(listeTaches)
+                localStorage.setItem("taches",listeTachesString)
+            }
+        </script>
+    </head>
+    <body>
+        <h1>To-do list</h1>
+        <h3><a href="liste.html">Retour</a></h3>
+        <p>Complétez ce formulaire pour ajouter une tâche.</p>
+        <form method="post">
+                <fieldset id="fieldset-1">
+                    <legend>Informations de base</legend>
+                    <span class="span-1">
+                        <label>Nom : </label>
+                    </span>
+                    <input type="text" id="idNom" placeholder="Nom de la tâche" required><br>
+                    <span class="span-1">
+                        <label>Description : </label>
+                    </span>
+                    <textarea name="desc" id="idDesc" placeholder="Description de la tâche..." required></textarea><br>
+                    <span class="span-1">
+                        <label>Lieu : </label>
+                    </span>
+                    <input type="text" id="idLieu" placeholder="Lieu de la tâche" required><br>
+                    <span class="span-1">
+                        <label>Date : </label>
+                    </span>
+                    <input type="date" id="idDate" placeholder="date"><br>
+                </fieldset>
+                <fieldset id="fieldset-2">
+                    <legend>Paramètres</legend>
+                    <p>Priorité de la tâche :</p>
+                    <select name="priorite" id="idPriorite" required>
+                        <option value="">-----Choisir-----</option>
+                        <!-- <option value="1">Très important</option>
+                        <option value="2">Important</option>
+                        <option value="3">Assez important</option>
+                        <option value="4">Peu important</option>
+                        <option value="5">Non important</option> -->
+                    </select><br>
+                    <script>
+                        priorites.forEach(function(item,index){
+                            let option = `<option value="${item.idPriorite}">${item.priorite}</option>`;
+                            document.getElementById("idPriorite").insertAdjacentHTML('beforeend',option);
+                        });
+                    </script>
+                    <p>Catégorie de la tâche :</p>
+                    <select name="categorie" id="idCategorie" required>
+                        <option value="">-----Choisir-----</option>
+                        <!-- <option value="1">Personnel</option>
+                        <option value="2">Professionel</option>
+                        <option value="3">Autre</option> -->
+                    </select><br>
+                    <script>
+                        categories.forEach(function(item,index){
+                            let option = `<option value="${item.idCategorie}">${item.categorie}</option>`;
+                            document.getElementById("idCategorie").insertAdjacentHTML('beforeend',option);
+                        });
+                    </script>
+                    <p>Statut de la tâche :</p>
+                    <select name="statut" id="idStatut" required>
+                        <!-- <option value="2">Accompli</option>
+                        <option value="1">En attente</option>
+                        <option value="3">Annulé</option> -->
+                    </select><br>
+                    <script>
+                        statuts.forEach(function(item,index){
+                            let option = `<option value="${item.idStatut}">${item.statut}</option>`;
+                            document.getElementById("idStatut").insertAdjacentHTML('beforeend',option);
+                        });
+                    </script>
+                    <p>Couleur de la tâche :</p>
+                    <select name="couleur" id="idCouleur">
+                        <!-- <option value="rouge">Rouge</option>
+                        <option value="vert">Vert</option>
+                        <option value="bleu">Bleu</option>
+                        <option value="cyan">Cyan</option> -->
+                    </select><br>
+                    <script>
+                        couleurs.forEach(function(item,index){
+                            let option = `<option value="${item.idCouleur}">${item.idCouleur}</option>`;
+                            document.getElementById("idCouleur").insertAdjacentHTML('beforeend',option);
+                        });
+                    </script>
+                </fieldset>
+                <button type="button" onclick="save()">Ajouter la tâche</button>
+            </form>
+    </body>
+</html>
