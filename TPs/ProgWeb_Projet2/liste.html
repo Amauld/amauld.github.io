@@ -17,8 +17,40 @@
         }
     </style>
     <script>
-        let listeTaches = localStorage.getItem("taches")
-        console.log(listeTaches)
+        document.onreadystatechange = function(){
+            document.onreadystatechange = function () {
+                if (document.readyState == "complete") {
+                    main();
+                }
+            };
+        }
+        function main(){
+            let priorites=[{"idPriorite":"1","priorite":"Très important"},{"idPriorite":"2","priorite":"Important"},{"idPriorite":"3","priorite":"Assez important"},{"idPriorite":"4","priorite":"Peu important"},{"idPriorite":"5","priorite":"Non important"}]
+            console.log(priorites)
+            let couleurs=[{"idCouleur":"rouge","code":"#FF0000"},{"idCouleur":"vert","code":"#00FF00"},{"idCouleur":"bleu","code":"#0000FF"},{"idCouleur":"cyan","code":"#00FFFF"}]
+            console.log(couleurs)
+            let categories=[{"idCategorie":"1","categorie":"Personnel"},{"idCategorie":"2","categorie":"Professionel"},{"idCategorie":"3","categorie":"Autre"}]
+            console.log(categories)
+            let statuts=[{"idStatut":"1","statut":"En attente"},{"idStatut":"2","statut":"Accompli"},{"idStatut":"3","statut":"Annulé"}]
+            console.log(statuts)
+
+            let listeTaches = localStorage.getItem("taches")
+            console.log(listeTaches)
+            listeTaches = JSON.parse(listeTaches)
+            listeTaches.forEach(function(item,index){
+                console.log(item)
+                
+                let prioriteId = item.idPriorite
+                let prioriteStr = priorites.find(element => element.idPriorite==prioriteId).priorite
+                let categorieId = item.idCategorie
+                let categorieStr = categories.find(element => element.idCategorie==categorieId).categorie
+                let statutId = item.idStatut
+                let statutStr = statuts.find(element => element.idStatut==statutId).statut
+
+                let ligne = `<tr><th scope="row">${item.nom}</th><th>${item.desc}</th><th>${item.lieu}</th><th>${item.dateTache}</th><th>${prioriteStr}</th><th>${categorieStr}</th><th>${statutStr}</th></tr>`;
+                document.getElementById("tableauTaches").insertAdjacentHTML('beforeend',ligne);
+            })
+        }
     </script>
 </head>
     <body>
@@ -37,8 +69,8 @@
                     <th scope="col">Satut</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="tableauTaches">
+                <!-- <tr>
                     <th scope="row">Python</th>
                     <th>Polyvalent</th>
                     <th>Avancé</th>
@@ -57,9 +89,9 @@
                     <th scope="row">HTML</th>
                     <th>Web</th>
                     <th>Débutant</th>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
-        <p><a href="index.html">Ajouter une tache</a></p>
+        <p><a href="index2.html">Ajouter une tache</a></p>
     </body>
 </html>
