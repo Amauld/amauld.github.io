@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Partie 2</title>
+        <style>
+            input  {
+                display: table-cell;
+                margin-bottom: 10px;
+            }
+            #fieldset-1 {
+                display: table ;
+                border-color: blue;
+            }
+            #fieldset-2 {
+                border-color: brown;
+            }
+            .span-1 {
+                display: inline-block;
+                width: 120px;
+            }
+            input[required]:invalid {
+                border:2px red solid;
+            }
+            input[required]:valid {
+                border:2px green solid;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>To-do list</h1>
+        <h3><a href="liste.html">Retour</a></h3>
+        <p>Complétez ce formulaire pour ajouter une tâche.</p>
+        <form method="post">
+                <fieldset id="fieldset-1">
+                    <legend>Informations de base</legend>
+                    <span class="span-1">
+                        <label>Nom : </label>
+                    </span>
+                    <input type="text" id="idNom" placeholder="Nom de la tâche" required><br>
+                    <span class="span-1">
+                        <label>Description : </label>
+                    </span>
+                    <textarea name="desc" id="idDesc" placeholder="Description de la tâche..." required></textarea><br>
+                    <span class="span-1">
+                        <label>Lieu : </label>
+                    </span>
+                    <input type="text" id="idLieu" placeholder="Lieu de la tâche" required><br>
+                    <span class="span-1">
+                        <label>Date : </label>
+                    </span>
+                    <input type="date" id="idDate" placeholder="date"><br>
+                </fieldset>
+                <fieldset id="fieldset-2">
+                    <legend>Paramètres</legend>
+                    <p>Priorité de la tâche :</p>
+                    <select name="priorite" id="idPriorite" required>
+                        <option value="">-----Choisir-----</option>
+                        <option value="1">Très important</option>
+                        <option value="2">Important</option>
+                        <option value="3">Assez important</option>
+                        <option value="4">Peu important</option>
+                        <option value="5">Non important</option>
+                    </select><br>
+                    <p>Catégorie de la tâche :</p>
+                    <select name="categorie" id="idCategorie" required>
+                        <option value="">-----Choisir-----</option>
+                        <option value="1">Personnel</option>
+                        <option value="2">Professionel</option>
+                        <option value="3">Autre</option>
+                    </select><br>
+                    <p>Statut de la tâche :</p>
+                    <select name="statut" id="idStatut" required>
+                        <option value="2">Accompli</option>
+                        <option value="1">En attente</option>
+                        <option value="3">Annulé</option>
+                    </select><br>
+                    <p>Couleur de la tâche :</p>
+                    <select name="couleur" id="idCouleur">
+                        <option value="rouge">Rouge</option>
+                        <option value="vert">Vert</option>
+                        <option value="bleu">Bleu</option>
+                        <option value="cyan">Cyan</option>
+                    </select><br>
+                </fieldset>
+                <button type="button"> Ajouter la tâche</button>
+            </form>
+    </body>
+</html>
