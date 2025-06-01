@@ -20,9 +20,9 @@
         td {
             border: 1px solid gray;
             padding: 8px 10px;
-            width: 11%;
+            width: 9%;
             max-width: 11%;
-            font-size: 1.5vh;
+            font-size: medium;
         }
         tr {
             border-radius: 20px;
@@ -56,11 +56,10 @@
             background-color: rgb(0, 255, 255);
         }
         .bouton {
-            height: 4vh;
-            width: 9vw;
+            width: 12vw;
             padding: 8px 10px;
             border-radius: 20px 20px;
-            font-size: 1.5vh;
+            font-size: 90%;
             cursor: pointer;
             position: relative;
             top: 1vh;
@@ -112,7 +111,7 @@
                 //let couleurStr = couleurs.find(element => element.couleurId==couleurId).code
 
                 if ((statutId != 3 && statutId != 4 && !montrerAccompli) || ((statutId == 3) && montrerAccompli)) {
-                    let ligne = `<tr id="tache${nbTaches}" class="ligne_${couleurId}"><th scope="row" class="tr_gauche">${tacheId}</th><th>${item.nom}</th><th>${item.desc}</th><th>${item.lieu}</th><th>${item.dateTache}</th><th>${prioriteStr}</th><th>${categorieStr}</th><th>${statutStr}</th><th class="tr_droite">
+                    let ligne = `<tr id="tache${nbTaches}" class="ligne_${couleurId}"><th scope="row" class="tr_gauche">${tacheId}</th><th>${item.nom}</th><th>${item.desc}</th><th>${item.lieu}</th><th>${item.dateCreation}</th><th>${item.dateTache}</th><th>${prioriteStr}</th><th>${categorieStr}</th><th>${statutStr}</th><th class="tr_droite">
                         <input type="radio" id="radio1_${tacheId}" name="r${tacheId}" value="1" onclick="changeStatut(${tacheId},1)"><label for="radio1_${tacheId}">En attente</label><br>
                         <input type="radio" id="radio2_${tacheId}" name="r${tacheId}" value="2" onclick="changeStatut(${tacheId},2)"><label for="radio2_${tacheId}">En cours</label><br>
                         <input type="radio" id="radio3_${tacheId}" name="r${tacheId}" value="3" onclick="changeStatut(${tacheId},3)"><label for="radio3_${tacheId}">Accompli</label><br>
@@ -154,7 +153,8 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
                     <th scope="col">Lieu</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Date limite</th>
                     <th scope="col">Priorité</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">Statut</th>
@@ -162,39 +162,10 @@
                     <th scope="col" class="tr_droite"><input type="checkbox" id="montrerAccompliCheckbox" name="montrerAccompli" onclick="main()">
                         <label for="montrerAccompliCheckbox">Afficher accompli</label><br>
                     </th>
-                    <!-- <th scope="col">Type de filtre :<select name="filtre" id="idFiltre">
-                        <option value="">Aucun</option>
-                        <option value="priorite">Priorité</option>
-                        <option value="categorie">Catégorie</option>
-                        <option value="statut">Statut</option>
-                        </select>
-                        Valeur :<select name="filtreValeur" id="idFiltreValeur">
-                        <option value="">------</option>
-                        </select>
-                    </th> -->
                 </tr>
             </thead>
             <tbody id="tableauTaches">
-                <!-- <tr>
-                    <th scope="row">Python</th>
-                    <th>Polyvalent</th>
-                    <th>Avancé</th>
-                </tr>
-                <tr>
-                    <th scope="row">C</th>
-                    <th>Développement</th>
-                    <th>Débutant</th>
-                </tr>
-                <tr>
-                    <th scope="row">Lua</th>
-                    <th>Jeux</th>
-                    <th>Avancé</th>
-                </tr>
-                <tr>
-                    <th scope="row">HTML</th>
-                    <th>Web</th>
-                    <th>Débutant</th>
-                </tr> -->
+
             </tbody>
         </table>
         </div>
