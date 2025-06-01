@@ -6,16 +6,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Partie 2</title>
         <style>
-            input  {
+            body {
+                background-color: rgb(230, 255, 229);
+            }
+            #main {
+                background-color: rgb(211, 255, 241);
+                width: 90%; 
+                border:5px solid blue;
+                border-radius: 20px;
+                margin:auto;
+            }
+            h1 {
+                position: relative;
+                left: 0.5vw;
+            }
+            form {
+                font-size: 1.5vh;
+            }
+            input {
                 display: table-cell;
                 margin-bottom: 10px;
             }
+            select {
+                size: 2vh;
+            }
             #fieldset-1 {
                 display: table ;
-                border-color: blue;
+                border-color: gray;
+                border-radius: 20px;
+                width: 88vw;
+                position: relative;
+                
             }
             #fieldset-2 {
-                border-color: brown;
+                border-color: gray;
+                border-radius: 20px;
+                width: 88vw;
+                position: relative;
+                
             }
             .span-1 {
                 display: inline-block;
@@ -26,6 +54,17 @@
             }
             input[required]:valid {
                 border:2px green solid;
+            }
+            .bouton {
+                height: 4vh;
+                width: 9vw;
+                padding: 8px 10px;
+                border-radius: 20px 20px;
+                font-size: 1.5vh;
+                cursor: pointer;
+                position: relative;
+                top: 1vh;
+                left: 5vw;
             }
         </style>
         <script src="moment.js"> </script>
@@ -86,7 +125,7 @@
                 var newStatutId = document.getElementById("idStatut").value
                 var newCouleurId = document.getElementById("idCouleur").value
 
-                if (newPrioriteId==0 || newCategorieId==0) {
+                if (newPrioriteId==0 || newCategorieId==0 || newNom=="") {
                     document.getElementById("erreur").style.display = "block"
                     return
                 }
@@ -109,13 +148,15 @@
                 localStorage.setItem("taches",listeTachesString)
                 window.location.href = "liste.html"
             }
+            function changePage(){
+            window.location.href = "liste.html"
+        }
         </script>
     </head>
     <body>
-        <h1>To-do list</h1>
-        <h3><a href="liste.html">Retour</a></h3>
-        <p>Complétez ce formulaire pour ajouter une tâche.</p>
-        <form method="post">
+        <div id="main">
+            <h1>Ajouter une tâche</h1>
+            <form method="post">
                 <fieldset id="fieldset-1">
                     <legend>Informations de base</legend>
                     <span class="span-1">
@@ -125,11 +166,11 @@
                     <span class="span-1">
                         <label>Description : </label>
                     </span>
-                    <textarea name="desc" id="idDesc" placeholder="Description de la tâche..." required></textarea><br>
+                    <textarea name="desc" id="idDesc" placeholder="Description de la tâche..."></textarea><br>
                     <span class="span-1">
                         <label>Lieu : </label>
                     </span>
-                    <input type="text" id="idLieu" placeholder="Lieu de la tâche" required><br>
+                    <input type="text" id="idLieu" placeholder="Lieu de la tâche"><br>
                     <span class="span-1">
                         <label>Date : </label>
                     </span>
@@ -137,7 +178,7 @@
                 </fieldset>
                 <fieldset id="fieldset-2">
                     <legend>Paramètres</legend>
-                    <p>Priorité de la tâche :</p>
+                    <p>Priorité de la tâche :
                     <select name="priorite" id="idPriorite" required>
                         <option value="">-----Choisir-----</option>
                         <!-- <option value="1">Très important</option>
@@ -145,30 +186,33 @@
                         <option value="3">Assez important</option>
                         <option value="4">Peu important</option>
                         <option value="5">Non important</option> -->
-                    </select><br>
-                    <p>Catégorie de la tâche :</p>
+                    </select></p><br>
+                    <p>Catégorie de la tâche :
                     <select name="categorie" id="idCategorie" required>
                         <option value="">-----Choisir-----</option>
                         <!-- <option value="1">Personnel</option>
                         <option value="2">Professionel</option>
                         <option value="3">Autre</option> -->
-                    </select><br>
-                    <p>Statut de la tâche :</p>
+                    </select></p><br>
+                    <p>Statut de la tâche :
                     <select name="statut" id="idStatut" required>
                         <!-- <option value="2">Accompli</option>
                         <option value="1">En attente</option>
                         <option value="3">Annulé</option> -->
-                    </select><br>
-                    <p>Couleur de la tâche :</p>
+                    </select></p><br>
+                    <p>Couleur de la tâche :
                     <select name="couleur" id="idCouleur">
                         <!-- <option value="rouge">Rouge</option>
                         <option value="vert">Vert</option>
                         <option value="bleu">Bleu</option>
                         <option value="cyan">Cyan</option> -->
-                    </select><br>
+                    </select></p><br>
                 </fieldset>
-                <button type="button" onclick="save()">Ajouter la tâche</button>
-                <p id="erreur">Erreur : Il manque des Informations !</p>
+                
+                
             </form>
+        </div>
+        <button type="button" onclick="save()" class="bouton">Ajouter la tâche</button> <button type="button" onclick="changePage()" class="bouton">Retour</button>
+        <p id="erreur">Erreur : Il manque des Informations !</p>
     </body>
 </html>
